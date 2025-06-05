@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       "2573f43c58f048db397fbf3f8525d97affbddd4beb03fa452247b2190a952fc1024c23b9";
 
     // 💡 List of allowed tag IDs
-    const ALLOWED_TAGS = ["159", "161", "153", "155", "148"];
+    const ALLOWED_TAGS = ["159", "161", "153", "155", "148", "167", "166"];
     // ────────────────────────────────────────────────────
 
     // 1. Get contact by email
@@ -66,6 +66,7 @@ export default async function handler(req, res) {
       ? tagsData.contactTags.map((ct) => String(ct.tag))
       : [];
 
+    // Check if any of the contact's tags are included in the ALLOWED_TAGS
     const authorized = tagIds.some((tag) => ALLOWED_TAGS.includes(tag));
 
     return res.status(200).json({ authorized, tags: tagIds });
